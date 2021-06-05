@@ -25,7 +25,11 @@ tr:nth-child(even){background-color: #f2f2f2}
 
 <body>
     <div style="overflow-x: auto">
-    <a class="filter" href="{{ route('siswa0007.create') }}">Filter Data </a>
+    <form class="example">
+                        <input type="text" placeholder="Search.." name="search">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+    <a class="tambah" href="{{ route('siswa0007.create') }}">Tambah Data </a>
     <table>
         <thead>
             <tr>
@@ -41,7 +45,14 @@ tr:nth-child(even){background-color: #f2f2f2}
                 <td>{{ $no++ }}</td>
                 <td>{{ $sw->nama }}</td>
                 <td>{{ $sw->alamat }}</td>
-                   </form>
+                <td>
+                <form action="{{ route('siswa0007.destroy', $sw->id) }}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <a href="{{ route('siswa0007.edit', $sw->id) }}" class="button button-orange">Edit</a>
+                                    <button type="submit" class="button button-merah">Delete</button>
+                                </form>
+                
                 </td>
             </tr>
             @endforeach
